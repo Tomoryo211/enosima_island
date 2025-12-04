@@ -1,8 +1,10 @@
-import Header from "./components/Header/page";
+import {Header} from "./components/Header/Header";
 
 export default function Home() {
   return (
-    <h1>こんにちは</h1>
-    <Header />
+    <div>
+      <Header />
+      <h1>こんにちは</h1>
+    </div>
   );
 }
