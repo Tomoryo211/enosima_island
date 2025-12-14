@@ -10,6 +10,9 @@ export default function Home() {
     <div className={styles.body}>
       <Header />
       <Image src={back}  alt="背景"/>
+      <div>
+        現在営業中のお店
+      </div>
     </div>
   )
 }
