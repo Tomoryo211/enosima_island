@@ -7,37 +7,63 @@ export default function torii(){
 useEffect(() => {
     const canvas = document.getElementById("wave") as HTMLCanvasElement;
     if (!canvas) return;
+
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
+    let time = 0;
+
     const resize = () => {
         canvas.width = window.innerWidth;
-        canvas.height = 250;
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        ctx.fillStyle = "#BDE9F2";
-        ctx.beginPath();
-        ctx.moveTo(0, 120);
-        ctx.quadraticCurveTo(
-        canvas.width * 0.25, 300,
-        canvas.width * 0.5, 130
+        canvas.height = 200;
+    };
+
+  const draw = () => {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // 🌊 青系グラデーション
+    const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+    gradient.addColorStop(0, "#EAF9FD"); // 上：かなり薄い青
+    gradient.addColorStop(0.5, "#DBF3F8"); // 中間
+    gradient.addColorStop(1, "#BEEAF5"); // 下：少し濃い青
+
+    ctx.fillStyle = gradient;
+
+    const waveHeight = 20;
+    const speed = 0.02;
+
+    ctx.beginPath();
+    ctx.moveTo(0, 120 + Math.sin(time) * waveHeight);
+
+    ctx.quadraticCurveTo(
+      canvas.width * 0.25,
+      180 + Math.sin(time + 1) * waveHeight,
+      canvas.width * 0.5,
+      130 + Math.sin(time + 2) * waveHeight
     );
-        ctx.quadraticCurveTo(
-            canvas.width * 0.75, 10,
-            canvas.width, 120
-        );
-        ctx.lineTo(canvas.width, 0);
-        ctx.lineTo(0, 0);
-        ctx.closePath();
-        ctx.fill();
-    };
 
-    resize();
-    window.addEventListener("resize", resize);
+    ctx.quadraticCurveTo(
+      canvas.width * 0.75,
+      80 + Math.sin(time + 3) * waveHeight,
+        canvas.width,
+      120 + Math.sin(time + 4) * waveHeight
+    );
 
-    return () => {
-        window.removeEventListener("resize", resize);
-    };
-    }, []);
+    ctx.lineTo(canvas.width, 0);
+    ctx.lineTo(0, 0);
+    ctx.closePath();
+    ctx.fill();
+
+    time += speed;
+    requestAnimationFrame(draw);
+  };
+
+  resize();
+  draw();
+
+  window.addEventListener("resize", resize);
+  return () => window.removeEventListener("resize", resize);
+}, []);
 
 return (
     <>
