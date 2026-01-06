@@ -19,6 +19,7 @@ export default function Home() {
       />
       <Torii />
       <div>
+        <Shop />
       </div>
     </div>
   );
