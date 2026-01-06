@@ -2,7 +2,7 @@
 import {Header} from "./components/Header/Header";
 import  styles  from "./index.module.scss";
 import Image from "next/image";
-import back from "./Images/mainBJ.png";
+import back from "./Images/main2.png";
 
 
 export default function Home() {
@@ -11,7 +11,7 @@ export default function Home() {
       <Header />
       <Image src={back}  alt="背景" className={styles.img}/>
       <div>
-        現在営業中のお店
+        
       </div>
     </div>
   )
