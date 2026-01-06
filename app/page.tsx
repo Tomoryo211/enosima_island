@@ -5,6 +5,7 @@ import styles from "./index.module.scss";
 import Image from "next/image";
 import back from "./Images/main2.png";
 import Torii from "./components/Torii/torii";
+import Shop from "./components/Shop/shop";
 
 export default function Home() {
   return (
@@ -18,7 +19,6 @@ export default function Home() {
       />
       <Torii />
       <div>
-        
       </div>
     </div>
   );
