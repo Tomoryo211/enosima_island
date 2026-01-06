@@ -4,4 +4,24 @@ body{
         width: 100%;
         height: 100%;
     }
+    .bronze{
+        
+        background: #BDE9F2;
+        .torii{
+            text-align: center;
+            font-size: 32px;
+            padding-top: 60px;
+        }
+        .About{
+            font-size: 32px;
+            text-align: center;
+            margin-top: 50px;
+        }
+    }
+    .wave {
+        display: block;
+        width: 100%;
+        height: 200px;
+    }
+
 }
