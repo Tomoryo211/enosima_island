@@ -9,7 +9,7 @@ export default function Home() {
   return(
     <div className={styles.body}>
       <Header />
-      <Image src={back}  alt="背景"/>
+      <Image src={back}  alt="背景" className={styles.img}/>
       <div>
         現在営業中のお店
       </div>
