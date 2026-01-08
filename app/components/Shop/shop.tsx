@@ -8,8 +8,8 @@ export default function Shop(){
         <>
         <div>
             <h2 className={style.shop}>現在営業中店舗</h2>
-            <form action="./search/">
-                <input type="search" id="movie" name="q" className={style.input}/>
+            <form action="./search/" className={style.input}>
+                <input type="search" id="movie" name="q" className={style.input_area}/>
                 <button type="submit">検索</button>
             </form>
         </div>
