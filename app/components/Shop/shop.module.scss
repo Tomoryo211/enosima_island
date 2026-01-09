@@ -2,10 +2,12 @@
     font-size: 32px;
     text-align: center;
 }
-.input{
-    border: 3px;
+.input_area{
     
-    .input_area{
-        background: red;
+    .input{
+        border: 3px;
+        .input_field{
+            background: red;
+        }
     }
 }
