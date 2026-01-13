@@ -9,9 +9,13 @@
         display: flex;
         justify-content: center;
         .input_field{
-            background: red;
+            background: #A0D4EE;
             padding: 0 auto;
             margin-right: 30px;
+            width: 40%;
+        }
+        .btn{
+            font-size: 30px;
         }
     }
 }

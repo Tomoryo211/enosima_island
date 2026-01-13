@@ -11,9 +11,13 @@ export default function Shop(){
             <section className={style.input_area}>
                 <form action="./search/" className={style.input}>
                     <input type="text" id="movie" name="q" className={style.input_field}/>
-                    <button type="submit">検索</button>
+                    <button type="submit" className={style.btn}>検索</button>
                 </form>
             </section>
+            <div>
+                <button>飲食</button>
+                <button>体験</button>
+            </div>
         </div>
         </>
     )
