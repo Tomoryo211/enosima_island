@@ -6,9 +6,12 @@
     
     .input{
         border: 3px;
+        display: flex;
+        justify-content: center;
         .input_field{
             background: red;
             padding: 0 auto;
+            margin-right: 30px;
         }
     }
 }
