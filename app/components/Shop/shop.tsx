@@ -14,7 +14,7 @@ export default function Shop(){
                     <button type="submit" className={style.btn}>検索</button>
                 </form>
             </section>
-            <div>
+            <div className={style.Eat_btn}>
                 <button>飲食</button>
                 <button>体験</button>
             </div>
