@@ -3,8 +3,8 @@
 import { useEffect } from "react";
 import styles from "./torii.module.scss";
 
-export default function torii(){
-useEffect(() => {
+export default function Torii() {
+  useEffect(() => {
     const canvas = document.getElementById("wave") as HTMLCanvasElement;
     if (!canvas) return;
 
@@ -12,75 +12,70 @@ useEffect(() => {
     if (!ctx) return;
 
     let time = 0;
-
-    const resize = () => {
-        canvas.width = window.innerWidth;
-        canvas.height = 200;
-    };
-
-  const draw = () => {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    // 🌊 青系グラデーション
-    const gradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-    gradient.addColorStop(0, "#EAF9FD"); // 上：かなり薄い青
-    gradient.addColorStop(0.5, "#DBF3F8"); // 中間
-    gradient.addColorStop(1, "#BEEAF5"); // 下：少し濃い青
-
-    ctx.fillStyle = gradient;
-
-    const waveHeight = 20;
     const speed = 0.02;
 
-    ctx.beginPath();
-    ctx.moveTo(0, 120 + Math.sin(time) * waveHeight);
+    const resize = () => {
+      canvas.width = window.innerWidth;
+      canvas.height = 150;
+    };
 
-    ctx.quadraticCurveTo(
-      canvas.width * 0.25,
-      180 + Math.sin(time + 1) * waveHeight,
-      canvas.width * 0.5,
-      130 + Math.sin(time + 2) * waveHeight
-    );
+    const draw = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    ctx.quadraticCurveTo(
-      canvas.width * 0.75,
-      120 + Math.sin(time + 3) * waveHeight,
-        canvas.width,
-      120 + Math.sin(time + 4) * waveHeight
-    );
+      const drawWave = (offset: number, amplitude: number, frequency: number, color: string, opacity: number) => {
+        ctx.save();
+        ctx.globalAlpha = opacity;
+        ctx.fillStyle = color;
+        ctx.beginPath();
 
-    ctx.lineTo(canvas.width, 0);
-    ctx.lineTo(0, 0);
-    ctx.closePath();
-    ctx.fill();
+        // Fill from the TOP to create a seamless flow from the .bronze background
+        ctx.moveTo(0, 0);
+        for (let x = 0; x <= canvas.width; x++) {
+          const y = offset + Math.sin(x * frequency + time) * amplitude;
+          ctx.lineTo(x, y);
+        }
+        ctx.lineTo(canvas.width, 0);
+        ctx.closePath();
+        ctx.fill();
+        ctx.restore();
+      };
 
-    time += speed;
-    requestAnimationFrame(draw);
-  };
+      // Ensure the color exactly matches #EAF9FD with no variations in the main wave
+      // Main solid wave
+      drawWave(60, 40, 0.002, "#EAF9FD", 1.0);
 
-  resize();
-  draw();
+      // Sub-wave for gentle movement effect, still using the same theme
+      drawWave(75, 30, 0.0015, "rgba(234, 249, 253, 0.6)", 1.0);
 
-  window.addEventListener("resize", resize);
-  return () => window.removeEventListener("resize", resize);
-}, []);
+      time += speed * 0.4;
+      requestAnimationFrame(draw);
+    };
 
-return (
+    resize();
+    draw();
+
+    window.addEventListener("resize", resize);
+    return () => window.removeEventListener("resize", resize);
+  }, []);
+
+  return (
     <>
-        <div className={styles.bronze}>
-            <h1 className={styles.torii}>青銅の鳥居の説明</h1>
-                <p className={styles.About}>
-                    江ノ島弁財天参拝の玄関口となる鳥居です。古くは木製の鳥居でしたが、<br />
-                    1821年に青銅製で再建されました。鳥居の柱には再建に尽力した大勢の<br />
-                    人々の名前を刻まれており、信仰の篤さを物語っています。正面の額には<br />
-                    「江島大明寺」と書かれていますが、特徴的な筆跡は弁財天のお使いで<br />
-                    ある蛇をかたどっています。鎌倉時代に、我が国もにモンゴル軍が襲来<br />
-                    した戦い(文永の役)で敵側が退散した事への神恩感謝として第91代の<br />
-                    後宇多天皇が奉納したとされる勅額(天皇から賜った額)を写したものです。<br />
-                    1997年に藤沢市の指定文化財に登録されました。
-                </p>
-        </div>
-    <canvas id="wave" className={styles.wave}></canvas>
+      <section className={styles.bronze}>
+        <h1 className={styles.torii}>青銅の鳥居</h1>
+        <p className={styles.About}>
+          江ノ島弁財天参拝の玄関口となる鳥居です。古くは木製の鳥居でしたが、
+          1821年に青銅製で再建されました。鳥居の柱には再建に尽力した大勢の
+          人々の名前を刻まれており、信仰の篤さを物語っています。正面の額には
+          「江島大明寺」と書かれていますが、特徴的な筆跡は弁財天のお使いで
+          ある蛇をかたどっています。鎌倉時代に、我が国にモンゴル軍が襲来
+          した戦い(文永の役)で敵側が退散した事への神恩感謝として第91代の
+          後宇多天皇が奉納したとされる勅額(天皇から賜った額)を写したものです。
+          1997年に藤沢市の指定文化財に登録されました。
+        </p>
+      </section>
+      <div className={styles.waveContainer}>
+        <canvas id="wave" className={styles.wave}></canvas>
+      </div>
     </>
-    )
+  );
 }

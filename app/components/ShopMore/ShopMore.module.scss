@@ -1,0 +1,101 @@
+.shopMoreContainer {
+    position: relative;
+    width: 100%;
+    padding: 100px 20px;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #7dd3fc; // Base blue for the wave section
+}
+
+.waveBackground {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.contentWrapper {
+    position: relative;
+    z-index: 10;
+    max-width: 1200px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    padding: 40px;
+    border-radius: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+
+    @media (max-width: 900px) {
+        flex-direction: column;
+        padding: 20px;
+    }
+}
+
+.imageSection {
+    flex: 1;
+    width: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+
+    .shopImg {
+        width: 100%;
+        height: auto;
+        display: block;
+        object-fit: cover;
+        transition: transform 0.6s ease;
+    }
+
+    &:hover .shopImg {
+        transform: scale(1.05);
+    }
+}
+
+.textSection {
+    flex: 1;
+    background: white;
+    padding: 60px 40px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+
+    @media (max-width: 600px) {
+        padding: 40px 20px;
+    }
+
+    .title {
+        font-size: 28px;
+        font-weight: 700;
+        color: #333;
+        margin-bottom: 30px;
+        letter-spacing: 0.1em;
+        font-family: "Hiragino Mincho ProN", "MS Mincho", serif;
+    }
+
+    .moreButton {
+        display: inline-block;
+        padding: 15px 50px;
+        background: linear-gradient(135deg, #e0f2fe 0%, #ffedd5 100%);
+        border: none;
+        border-radius: 50px;
+        font-size: 20px;
+        font-weight: 600;
+        color: #333;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+
+        &:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            filter: brightness(1.05);
+        }
+    }
+}

@@ -1,18 +1,40 @@
-.bronze{
-    background: #EAF9FD;
-        .torii{
-            text-align: center;
-            font-size: 32px;
-            padding-top: 60px;
-        }
-        .About{
-            font-size: 32px;
-            text-align: center;
-            margin-top: 50px;
-        }
+.bronze {
+    background-color: #EAF9FD;
+    width: 100%;
+    padding-bottom: 0; // Seamless to wave
+
+    .torii {
+        text-align: center;
+        font-size: 32px;
+        padding-top: 80px;
+        margin: 0;
+        color: #333;
+        font-family: "Hiragino Mincho ProN", "MS Mincho", serif;
     }
-    .wave {
-        display: block;
-        width: 100%;
-        height: 200px;
+
+    .About {
+        font-size: clamp(16px, 2.5vw, 24px);
+        text-align: center;
+        margin-top: 40px;
+        padding: 0 20px 60px;
+        line-height: 2;
+        color: #444;
+        max-width: 1000px;
+        margin-left: auto;
+        margin-right: auto;
     }
+}
+
+.waveContainer {
+    background-color: #FDF4EC; // Background of the NEXT section (Shop)
+    width: 100%;
+    height: 150px;
+    overflow: hidden;
+    margin-top: -1px; // Prevent tiny gaps
+}
+
+.wave {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
