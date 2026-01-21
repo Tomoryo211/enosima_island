@@ -44,7 +44,7 @@ useEffect(() => {
 
     ctx.quadraticCurveTo(
       canvas.width * 0.75,
-      80 + Math.sin(time + 3) * waveHeight,
+      120 + Math.sin(time + 3) * waveHeight,
         canvas.width,
       120 + Math.sin(time + 4) * waveHeight
     );
