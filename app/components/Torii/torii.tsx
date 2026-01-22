@@ -40,12 +40,12 @@ export default function Torii() {
         ctx.restore();
       };
 
-      // Ensure the color exactly matches #EAF9FD with no variations in the main wave
+      // Ensure the color exactly matches the new #7dd3fc background
       // Main solid wave
-      drawWave(60, 40, 0.002, "#EAF9FD", 1.0);
+      drawWave(60, 40, 0.002, "#7dd3fc", 1.0);
 
-      // Sub-wave for gentle movement effect, still using the same theme
-      drawWave(75, 30, 0.0015, "rgba(234, 249, 253, 0.6)", 1.0);
+      // Sub-wave for gentle movement effect
+      drawWave(75, 30, 0.0015, "rgba(125, 211, 252, 0.6)", 1.0);
 
       time += speed * 0.4;
       requestAnimationFrame(draw);
@@ -61,7 +61,7 @@ export default function Torii() {
   return (
     <>
       <section className={styles.bronze}>
-        <h1 className={styles.torii}>青銅の鳥居</h1>
+        <h1 className={styles.torii}>青銅の鳥居とは</h1>
         <p className={styles.About}>
           江ノ島弁財天参拝の玄関口となる鳥居です。古くは木製の鳥居でしたが、
           1821年に青銅製で再建されました。鳥居の柱には再建に尽力した大勢の
