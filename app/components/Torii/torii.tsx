@@ -28,7 +28,6 @@ export default function Torii() {
         ctx.fillStyle = color;
         ctx.beginPath();
 
-        // Fill from the TOP to create a seamless flow from the .bronze background
         ctx.moveTo(0, 0);
         for (let x = 0; x <= canvas.width; x++) {
           const y = offset + Math.sin(x * frequency + time) * amplitude;
@@ -39,12 +38,8 @@ export default function Torii() {
         ctx.fill();
         ctx.restore();
       };
-
-      // Ensure the color exactly matches the new #7dd3fc background
-      // Main solid wave
       drawWave(60, 40, 0.002, "#7dd3fc", 1.0);
 
-      // Sub-wave for gentle movement effect
       drawWave(75, 30, 0.0015, "rgba(125, 211, 252, 0.6)", 1.0);
 
       time += speed * 0.4;
