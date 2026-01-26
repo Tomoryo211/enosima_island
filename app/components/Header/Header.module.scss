@@ -2,10 +2,17 @@
     background: #7dd3fc;
     text-align: center;
     padding: 15px;
-}
-.Header_List{
     display: flex;
-    gap: 70;
-    justify-content: right;
-    margin-right: 40px;
+    justify-content: space-between;
+    .img{
+        width: 80px;
+        height: 70px;
+    }
+    .Header_List{
+        display: flex;
+        gap: 70;
+        justify-content: right;
+        font-size: 20px;
+        margin-top: 20px;
+    }
 }
