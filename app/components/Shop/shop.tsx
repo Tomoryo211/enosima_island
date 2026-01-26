@@ -59,7 +59,7 @@ export default function Shop() {
       // Light sea foam white and very pale blue, with extra low opacity
       drawFullWave(40, 0.0012, "rgba(255, 255, 255, 0.25)", 0.6, 0.5);
       drawFullWave(30, 0.0008, "rgba(174, 226, 245, 0.08)", 0.4, 0.7);
-      drawFullWave(50, 0.0015, "rgba(253, 226, 204, 0.1)", 0.3, 0.3); // Hint of background color variation
+      drawFullWave(50, 0.0015, "rgba(253, 226, 204, 0.1)", 0.3, 0.3); 
 
       time += 0.012;
       requestAnimationFrame(draw);
@@ -73,7 +73,6 @@ export default function Shop() {
 
   const itemsPerPage = 6;
 
-  // Fetch shops from Google Places API via our proxy
   const fetchShops = async () => {
     setLoading(true);
     try {
