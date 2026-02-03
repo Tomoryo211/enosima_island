@@ -290,3 +290,91 @@
         justify-content: center;
     }
 }
+
+@media (max-width: 768px) {
+    .shopContainer {
+        padding: 40px 15px;
+    }
+
+    .title {
+        font-size: 24px;
+    }
+
+    .searchSection {
+        flex-direction: column;
+        gap: 10px;
+
+        .searchInput {
+            padding: 14px 20px;
+            font-size: 16px;
+        }
+
+        .searchButton {
+            padding: 12px;
+            font-size: 18px;
+        }
+    }
+
+    .filterHeader {
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+
+        .categoryButtons {
+            width: 100%;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .categoryBtn {
+            padding: 10px 20px;
+            font-size: 15px;
+            flex: 1;
+            min-width: 100px;
+            text-align: center;
+        }
+    }
+
+    .paginationTop {
+        width: 100%;
+        justify-content: center;
+        font-size: 16px;
+
+        .prevBtn,
+        .nextBtn {
+            padding: 8px 15px;
+            font-size: 14px;
+        }
+    }
+
+    .shopGrid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .mapWrapper {
+        margin-top: 60px;
+
+        .mapContainer {
+            height: 350px;
+            border-radius: 20px;
+            border-width: 4px;
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 20px;
+    }
+
+    .categoryButtons {
+        gap: 8px;
+    }
+
+    .categoryBtn {
+        padding: 8px 15px;
+        font-size: 14px;
+        min-width: 80px;
+    }
+}

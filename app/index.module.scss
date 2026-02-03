@@ -63,3 +63,16 @@ body {
         transform: translateY(0);
     }
 }
+
+@media (max-width: 768px) {
+    .heroSection .heroTitleContainer {
+        .mainTitle {
+            letter-spacing: 0.5rem;
+            padding-left: 0.5rem;
+        }
+
+        .subTitle {
+            letter-spacing: 0.3rem;
+        }
+    }
+}

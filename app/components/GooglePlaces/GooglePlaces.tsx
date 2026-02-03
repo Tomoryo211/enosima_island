@@ -23,6 +23,10 @@ interface ShopDetails {
     };
     website?: string;
     vicinity?: string;
+    editorial_summary?: {
+        language: string;
+        overview: string;
+    };
 }
 
 export default function GooglePlaces() {
@@ -31,6 +35,8 @@ export default function GooglePlaces() {
     const [selectedShopId, setSelectedShopId] = useState<string | null>(null);
     const [shopDetails, setShopDetails] = useState<Record<string, ShopDetails>>({});
     const [loadingDetails, setLoadingDetails] = useState<string | null>(null);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [activeShop, setActiveShop] = useState<Shop | null>(null);
 
     useEffect(() => {
         fetchShops();
@@ -51,9 +57,12 @@ export default function GooglePlaces() {
         }
     };
 
-    const fetchDetails = async (placeId: string) => {
+    const fetchDetails = async (shop: Shop) => {
+        const placeId = shop.id;
+        setActiveShop(shop);
+
         if (shopDetails[placeId]) {
-            setSelectedShopId(selectedShopId === placeId ? null : placeId);
+            setIsModalOpen(true);
             return;
         }
 
@@ -63,13 +72,18 @@ export default function GooglePlaces() {
             const data = await response.json();
             if (data.success) {
                 setShopDetails(prev => ({ ...prev, [placeId]: data.data }));
-                setSelectedShopId(placeId);
+                setIsModalOpen(true);
             }
         } catch (error) {
             console.error("Error fetching details:", error);
         } finally {
             setLoadingDetails(null);
         }
+    };
+
+    const closeModal = () => {
+        setIsModalOpen(false);
+        // We keep activeShop for exit animations if any, but modal hides it
     };
 
     if (loading) {
@@ -86,7 +100,7 @@ export default function GooglePlaces() {
             <div className={styles.grid}>
                 {shops.length > 0 ? (
                     shops.map((shop) => (
-                        <div key={shop.id} className={styles.card}>
+                        <div key={shop.id} className={styles.card} onClick={() => fetchDetails(shop)}>
                             <div className={styles.imageArea}>
                                 <img
                                     src={shop.image_url || "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=400"}
@@ -113,48 +127,14 @@ export default function GooglePlaces() {
 
                                 <button
                                     className={styles.viewDetailsBtn}
-                                    onClick={() => fetchDetails(shop.id)}
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        fetchDetails(shop);
+                                    }}
                                     disabled={loadingDetails === shop.id}
                                 >
-                                    {loadingDetails === shop.id ? "読み込み中..." :
-                                        selectedShopId === shop.id ? "詳細を閉じる" : "営業詳細を見る"}
+                                    {loadingDetails === shop.id ? "読み込み中..." : "詳細を見る"}
                                 </button>
-
-                                {selectedShopId === shop.id && shopDetails[shop.id] && (
-                                    <div className={styles.infoSection}>
-                                        <div className={styles.divider} />
-
-                                        {shopDetails[shop.id].formatted_phone_number && (
-                                            <div className={styles.infoRow}>
-                                                <span className={styles.infoLabel}>電話番号</span>
-                                                <span className={styles.infoValue}>{shopDetails[shop.id].formatted_phone_number}</span>
-                                            </div>
-                                        )}
-
-                                        {shopDetails[shop.id].opening_hours?.weekday_text && (
-                                            <div className={styles.hoursContainer}>
-                                                <div className={styles.infoLabel} style={{ marginBottom: '10px' }}>営業時間</div>
-                                                {shopDetails[shop.id].opening_hours?.weekday_text.map((text, index) => {
-                                                    const isToday = new Date().getDay() === (index + 1) % 7;
-                                                    return (
-                                                        <div key={index} className={`${styles.hourItem} ${isToday ? styles.today : ""}`}>
-                                                            {text}
-                                                        </div>
-                                                    );
-                                                })}
-                                            </div>
-                                        )}
-
-                                        {shopDetails[shop.id].website && (
-                                            <div className={styles.infoRow} style={{ marginTop: '15px' }}>
-                                                <span className={styles.infoLabel}>公式サイト</span>
-                                                <a href={shopDetails[shop.id].website} target="_blank" rel="noopener noreferrer" className={styles.infoValue} style={{ color: '#00B894', textDecoration: 'underline' }}>
-                                                    Webサイトを開く
-                                                </a>
-                                            </div>
-                                        )}
-                                    </div>
-                                )}
                             </div>
                         </div>
                     ))
@@ -162,6 +142,63 @@ export default function GooglePlaces() {
                     <div className={styles.noResults}>周辺に店舗が見つかりませんでした。</div>
                 )}
             </div>
+
+            {/* Modal Implementation */}
+            {isModalOpen && activeShop && (
+                <div className={styles.modalOverlay} onClick={closeModal}>
+                    <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+                        <div className={styles.modalHeader}>
+                            <div className={styles.modalNavArea}>NAVバー</div>
+                        </div>
+
+                        <div className={styles.modalBody}>
+                            <div className={styles.topInfo}>
+                                <div className={styles.modalImageWrapper}>
+                                    <img
+                                        src={activeShop.image_url || "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=600"}
+                                        alt={activeShop.name}
+                                        className={styles.modalImage}
+                                    />
+                                </div>
+
+                                <div className={styles.modalMainDetails}>
+                                    <p className={styles.modalCategory}>{activeShop.category}</p>
+                                    <h2 className={styles.modalName}>{activeShop.name}</h2>
+
+                                    <div className={styles.modalInfoList}>
+                                        <div className={styles.modalInfoItem}>
+                                            {shopDetails[activeShop.id]?.opening_hours?.weekday_text ? (
+                                                <span className={styles.modalHours}>
+                                                    {shopDetails[activeShop.id].opening_hours?.weekday_text[new Date().getDay() === 0 ? 6 : new Date().getDay() - 1].split(': ')[1] || "確認中"}
+                                                </span>
+                                            ) : (
+                                                <span className={styles.modalHours}>10:00~18:00</span>
+                                            )}
+                                        </div>
+                                        <div className={styles.modalInfoItem}>
+                                            <span className={styles.modalHoliday}>
+                                                定休日：{shopDetails[activeShop.id]?.opening_hours?.weekday_text?.find(t => t.includes("閉店") || t.includes("定休日") || t.includes("Closed"))?.split(': ')[0] || "年中無休（要確認）"}
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className={styles.descriptionSection}>
+                                <div className={styles.descriptionBox}>
+                                    {shopDetails[activeShop.id]?.editorial_summary?.overview || "江の島仲見世通りにある素敵なお店です。地元の特産品や美味しいお料理をお楽しみいただけます。"}
+                                </div>
+                            </div>
+
+                            <div className={styles.modalFooter}>
+                                <button className={styles.backButton} onClick={closeModal}>
+                                    戻る
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

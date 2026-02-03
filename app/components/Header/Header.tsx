@@ -6,16 +6,16 @@ export function Header() {
     return (
         <>
             <div className={styles.header}>
-                <a href="/"><Image 
+                <a href="/"><Image
                     src={enosima}
                     alt="ロゴ"
                     className={styles.img}
-                    priority 
+                    priority
                 /></a>
                 <ul className={styles.Header_List}>
                     <li><a href="/">Topページ</a></li>
                     <li><a href="/shops">お店紹介</a></li>
-                    <li><a href="/">Topページ</a></li>
+                    <li><a href="/">ルート検索</a></li>
                 </ul>
             </div>
         </>

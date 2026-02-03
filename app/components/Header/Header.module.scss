@@ -1,20 +1,46 @@
-.header{
+.header {
     background: #7dd3fc;
     text-align: center;
-    padding: 15px;
+    padding: 15px 30px;
     display: flex;
     justify-content: space-between;
-    .img{
-        width: 80px;
-        height: 70px;
+    align-items: center;
+
+    .img {
+        width: 60px;
+        height: auto;
     }
-    .Header_List{
+
+    .Header_List {
         display: flex;
-        gap: 70;
+        gap: 40px;
         justify-content: right;
-        font-size: 20px;
-        margin-top: 20px;
+        font-size: 18px;
         color: #fcfcfc;
-        text-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); 
+        text-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        padding: 10px 15px;
+
+        .img {
+            width: 50px;
+        }
+
+        .Header_List {
+            gap: 20px;
+            font-size: 14px;
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .header {
+        .Header_List {
+            gap: 12px;
+            font-size: 13px;
+        }
     }
 }

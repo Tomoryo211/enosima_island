@@ -249,3 +249,199 @@
     color: #636E72;
     grid-column: 1 / -1;
 }
+
+/* Modal Styles */
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    backdrop-filter: blur(8px);
+    padding: 20px;
+}
+
+.modalContent {
+    background: #FDF4EC; // Matching the peach theme from the image
+    width: 100%;
+    max-width: 900px;
+    height: auto;
+    max-height: 90vh;
+    border-radius: 0px; // Image shows sharp corners or very subtle ones
+    overflow-y: auto;
+    position: relative;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+}
+
+.modalHeader {
+    background: #D9D9D9; // Nav bar area in image
+    padding: 15px;
+    text-align: center;
+    font-size: 0.8rem;
+    color: #666;
+    letter-spacing: 2px;
+}
+
+.modalBody {
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.topInfo {
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+}
+
+.modalImageWrapper {
+    flex: 1;
+    max-width: 500px;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+
+    .modalImage {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+.modalMainDetails {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding-top: 20px;
+
+    .modalCategory {
+        font-size: 1.5rem;
+        color: #333;
+        margin-bottom: 10px;
+    }
+
+    .modalName {
+        font-size: 4rem;
+        font-weight: 500;
+        color: #000;
+        margin-bottom: 40px;
+        line-height: 1.1;
+    }
+
+    .modalInfoList {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        font-size: 1.5rem;
+        color: #333;
+    }
+}
+
+.descriptionSection {
+    .descriptionBox {
+        background: #D9D9D9; // Description box in image
+        min-height: 250px;
+        padding: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 3rem;
+        color: #333;
+        text-align: center;
+        word-break: break-all;
+    }
+}
+
+.modalFooter {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    padding-bottom: 20px;
+}
+
+.backButton {
+    background: linear-gradient(to right, #B2EBF2, #FFFFFF);
+    border: none;
+    padding: 15px 60px;
+    border-radius: 50px;
+    font-size: 1.5rem;
+    color: #333;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+
+    &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    }
+}
+
+/* Responsiveness */
+@media (max-width: 1024px) {
+    .modalContent {
+        max-width: 95%;
+    }
+
+    .modalMainDetails .modalName {
+        font-size: 3rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .topInfo {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .modalImageWrapper {
+        max-width: 100%;
+    }
+
+    .modalMainDetails {
+        padding-top: 0;
+
+        .modalName {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .modalInfoList {
+            font-size: 1.2rem;
+        }
+    }
+
+    .descriptionSection .descriptionBox {
+        font-size: 2rem;
+        min-height: 200px;
+    }
+
+    .modalBody {
+        padding: 20px;
+    }
+
+    .backButton {
+        padding: 12px 40px;
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .modalMainDetails .modalName {
+        font-size: 2rem;
+    }
+
+    .descriptionSection .descriptionBox {
+        font-size: 1.5rem;
+    }
+}

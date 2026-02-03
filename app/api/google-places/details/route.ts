@@ -13,7 +13,7 @@ export async function GET(request: Request) {
         return NextResponse.json({ error: "Place ID is required" }, { status: 400 });
     }
 
-    const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=name,rating,formatted_phone_number,opening_hours,website,vicinity,opening_hours/weekday_text&key=${apiKey}&language=ja`;
+    const url = `https://maps.googleapis.com/maps/api/place/details/json?place_id=${placeId}&fields=name,rating,formatted_phone_number,opening_hours,website,vicinity,editorial_summary,opening_hours/weekday_text&key=${apiKey}&language=ja`;
 
     try {
         const response = await fetch(url);
