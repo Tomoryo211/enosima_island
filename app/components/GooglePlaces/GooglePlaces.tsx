@@ -167,13 +167,16 @@ export default function GooglePlaces() {
 
                                     <div className={styles.modalInfoList}>
                                         <div className={styles.modalInfoItem}>
-                                            {shopDetails[activeShop.id]?.opening_hours?.weekday_text ? (
-                                                <span className={styles.modalHours}>
-                                                    {shopDetails[activeShop.id].opening_hours?.weekday_text[new Date().getDay() === 0 ? 6 : new Date().getDay() - 1].split(': ')[1] || "確認中"}
-                                                </span>
-                                            ) : (
-                                                <span className={styles.modalHours}>10:00~18:00</span>
-                                            )}
+                                            {(() => {
+                                                const details = shopDetails[activeShop.id];
+                                                const weekdayText = details?.opening_hours?.weekday_text;
+                                                if (weekdayText) {
+                                                    const todayIndex = new Date().getDay() === 0 ? 6 : new Date().getDay() - 1;
+                                                    const hoursStr = weekdayText[todayIndex]?.split(': ')[1] || "確認中";
+                                                    return <span className={styles.modalHours}>{hoursStr}</span>;
+                                                }
+                                                return <span className={styles.modalHours}>10:00~18:00</span>;
+                                            })()}
                                         </div>
                                         <div className={styles.modalInfoItem}>
                                             <span className={styles.modalHoliday}>
