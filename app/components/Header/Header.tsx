@@ -15,7 +15,7 @@ export function Header() {
                 <ul className={styles.Header_List}>
                     <li><a href="/">Topページ</a></li>
                     <li><a href="/shops">お店紹介</a></li>
-                    <li><a href="/">ルート検索</a></li>
+                    <li><a href="/route-search">ルート提案</a></li>
                 </ul>
             </div>
         </>
