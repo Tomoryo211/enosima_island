@@ -1,16 +1,17 @@
 import styles from "./Header.module.scss";
 import Image from "next/image";
-import enosima from "../../Images/enosima.jpg";
 
 export function Header() {
     return (
         <>
             <div className={styles.header}>
                 <a href="/"><Image
-                    src={enosima}
+                    src="/enosima.jpg"
                     alt="ロゴ"
                     className={styles.img}
                     priority
+                    width={100}
+                    height={100}
                 /></a>
                 <ul className={styles.Header_List}>
                     <li><a href="/">topページ</a></li>

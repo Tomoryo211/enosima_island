@@ -4,7 +4,6 @@ import { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./ShopMore.module.scss";
-import shopImage from "../../Images/shop.png";
 
 export default function ShopMore() {
     useEffect(() => {
@@ -59,10 +58,12 @@ export default function ShopMore() {
             <div className={styles.contentWrapper}>
                 <div className={styles.imageSection}>
                     <Image
-                        src={shopImage}
+                        src="/shop.png"
                         alt="お店の詳細案内"
                         className={styles.shopImg}
                         priority
+                        width={600}
+                        height={400}
                     />
                 </div>
 
