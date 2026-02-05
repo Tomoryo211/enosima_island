@@ -147,10 +147,6 @@ export default function GooglePlaces() {
             {isModalOpen && activeShop && (
                 <div className={styles.modalOverlay} onClick={closeModal}>
                     <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-                        <div className={styles.modalHeader}>
-                            <div className={styles.modalNavArea}>NAVバー</div>
-                        </div>
-
                         <div className={styles.modalBody}>
                             <div className={styles.topInfo}>
                                 <div className={styles.modalImageWrapper}>
