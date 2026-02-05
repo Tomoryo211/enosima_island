@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "./ShopMore.module.scss";
-import shopImage from "../../images/shop.png";
+import shopImage from "../../Images/shop.png";
 
 export default function ShopMore() {
     useEffect(() => {
