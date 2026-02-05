@@ -15,10 +15,10 @@ export default function Home() {
         <Image
           src="/main2.png"
           alt="背景"
-          className={styles.img}
-          priority
           width={1920}
           height={1080}
+          className={styles.img}
+          priority
         />
         <div className={styles.heroTitleContainer}>
           <h1 className={styles.mainTitle}>江ノ島</h1>

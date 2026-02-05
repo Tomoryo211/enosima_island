@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import styles from "./shop.module.scss";
 
 type Shop = {
@@ -59,7 +60,7 @@ export default function Shop() {
       // Light sea foam white and very pale blue, with extra low opacity
       drawFullWave(40, 0.0012, "rgba(255, 255, 255, 0.25)", 0.6, 0.5);
       drawFullWave(30, 0.0008, "rgba(174, 226, 245, 0.08)", 0.4, 0.7);
-      drawFullWave(50, 0.0015, "rgba(253, 226, 204, 0.1)", 0.3, 0.3); 
+      drawFullWave(50, 0.0015, "rgba(253, 226, 204, 0.1)", 0.3, 0.3);
 
       time += 0.012;
       requestAnimationFrame(draw);
@@ -221,9 +222,11 @@ export default function Shop() {
               style={{ cursor: 'pointer', border: selectedShop?.id === shop.id ? '2px solid #00B894' : 'none' }}
             >
               <div className={styles.imageArea}>
-                <img
+                <Image
                   src={shop.image_url || "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=400"}
                   alt={shop.name}
+                  width={400}
+                  height={300}
                   className={styles.shopImage}
                 />
                 <div className={styles.categoryIcon}>

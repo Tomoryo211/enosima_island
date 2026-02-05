@@ -8,10 +8,10 @@ export function Header() {
                 <a href="/"><Image
                     src="/enosima.jpg"
                     alt="ロゴ"
-                    className={styles.img}
-                    priority
                     width={100}
                     height={100}
+                    className={styles.img}
+                    priority
                 /></a>
                 <ul className={styles.Header_List}>
                     <li><a href="/">topページ</a></li>

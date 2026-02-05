@@ -60,10 +60,10 @@ export default function ShopMore() {
                     <Image
                         src="/shop.png"
                         alt="お店の詳細案内"
-                        className={styles.shopImg}
-                        priority
                         width={600}
                         height={400}
+                        className={styles.shopImg}
+                        priority
                     />
                 </div>
 

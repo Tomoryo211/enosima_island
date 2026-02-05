@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
 import styles from "./GooglePlaces.module.scss";
 
 interface Shop {
@@ -102,9 +103,11 @@ export default function GooglePlaces() {
                     shops.map((shop) => (
                         <div key={shop.id} className={styles.card} onClick={() => fetchDetails(shop)}>
                             <div className={styles.imageArea}>
-                                <img
+                                <Image
                                     src={shop.image_url || "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=400"}
                                     alt={shop.name}
+                                    width={400}
+                                    height={300}
                                     className={styles.shopImage}
                                 />
                                 {shop.rating && (
@@ -150,9 +153,11 @@ export default function GooglePlaces() {
                         <div className={styles.modalBody}>
                             <div className={styles.topInfo}>
                                 <div className={styles.modalImageWrapper}>
-                                    <img
+                                    <Image
                                         src={activeShop.image_url || "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?q=80&w=600"}
                                         alt={activeShop.name}
+                                        width={800}
+                                        height={600}
                                         className={styles.modalImage}
                                     />
                                 </div>
